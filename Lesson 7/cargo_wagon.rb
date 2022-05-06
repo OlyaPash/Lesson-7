@@ -1,22 +1,22 @@
 require_relative 'company'
 
-class CargoWagon < Train
+class CargoWagon < Wagon
 include Company
 
-attr_accessor :volume
-
-  def initialize(type = "cargo", volume)
-    @type = type
-    @volume = volume
+  def initialize(type = "cargo", capacity)
+    super
   end
 
-  def filling(take_volume)
-    @remaining = @volume - take_volume
-    puts "Занято: #{take_volume}"
+  def occupied_volume(capacity)
+    @occupied += capacity
   end
 
-  def available_volume
-    puts "Свободный объем: #{@remaining}"
+  def occupied_capacity
+    @occupied
+  end
+  
+  def free_volume
+    @capacity - @occupied
   end
 
 end
