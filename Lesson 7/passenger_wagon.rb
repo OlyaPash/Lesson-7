@@ -1,27 +1,23 @@
 require_relative 'company'
 
-class PassengerWagon < Train
+class PassengerWagon < Wagon
 include Company
 
-attr_reader :seats
-
-  def initialize(type = "passenger", seats)
-    @type = type
-    @seats = seats
-    @seat_num = 1
+  def initialize(type = "passenger", capacity)
+    super
     @occupied = []
   end
 
   def take_seat
-    @seats -= @seat_num
-    @occupied << @seat_num
+    @capacity -= @free_seat
+    @occupied << @free_seat
   end
 
   def occupied_seat
     puts "Занятых мест: #{@occupied.sum}"
   end
 
-  def free_seat
-    puts "Количество свободных мест в вагоне #{@seats}"
+  def free_seats
+    puts "Количество свободных мест в вагоне #{@capacity}"
   end
 end
