@@ -1,23 +1,13 @@
 require_relative 'company'
 
 class PassengerWagon < Wagon
-include Company
+  include Company
 
-  def initialize(type = "passenger", capacity)
+  def initialize(type = "passenger", total_place)
     super
-    @occupied = []
   end
 
   def take_seat
-    @capacity -= @free_seat
-    @occupied << @free_seat
-  end
-
-  def occupied_seat
-    puts "Занятых мест: #{@occupied.sum}"
-  end
-
-  def free_seats
-    puts "Количество свободных мест в вагоне #{@capacity}"
+    @used_place += 1 if free_place > 0
   end
 end
