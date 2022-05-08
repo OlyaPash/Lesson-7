@@ -1,22 +1,14 @@
 require_relative 'company'
 
 class CargoWagon < Wagon
-include Company
+  include Company
 
-  def initialize(type = "cargo", capacity)
+  def initialize(type = "cargo", total_place)
     super
   end
 
-  def occupied_volume(capacity)
-    @occupied += capacity
-  end
-
-  def occupied_capacity
-    @occupied
-  end
-  
-  def free_volume
-    @capacity - @occupied
+  def received_volume(volume)
+    @used_place += volume if free_place >= volume
   end
 
 end
