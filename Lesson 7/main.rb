@@ -171,9 +171,9 @@ class Main
         num = 1
         @trains[train].wagons_list do |wagon|
           if wagon.class == PassengerWagon
-            puts "Вагон №#{num}. Занятых мест: #{@used_place}, свободных: #{wagon.free_place}"
+            puts "Вагон №#{num}. Занятых мест: #{@used_place.to_i}, свободных: #{wagon.free_place}"
           else
-            puts "Вагон №#{num}. Занятый объем: #{@used_place}, свободно: #{wagon.free_place}"
+            puts "Вагон №#{num}. Занятый объем: #{@used_place.to_i}, свободно: #{wagon.free_place}"
           end
           num += 1
         end
