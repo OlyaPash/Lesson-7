@@ -1,15 +1,18 @@
 require_relative 'company'
 
 class Wagon
-include Company
+  include Company
 
-attr_reader :type, :capacity, :occupied, :free_seat
+  attr_reader :type, :total_place, :used_place
 
-  def initialize(type, capacity)
+  def initialize(type, total_place)
     @type = type
-    @capacity = capacity
-    @occupied = 0
-    @free_seat = 1
+    @total_place = total_place
+    @used_place = 0
+  end
+  
+  def free_place
+    total_place - used_place
   end
 
 end
