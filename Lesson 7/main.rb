@@ -133,14 +133,14 @@ class Main
       case @trains[train].type 
         when "cargo"
           puts "Укажите общий объем:"
-          capacity = gets.chomp.to_i
-          wagon = CargoWagon.new(capacity)
+          total_place = gets.chomp.to_i
+          wagon = CargoWagon.new(total_place)
           @wagons << wagon
           @trains[train].add_wagons(wagon)
         when "passenger"
           puts "Укажите количество мест в вагоне:"
-          capacity = gets.chomp.to_i
-          wagon = PassengerWagon.new(capacity)
+          total_place = gets.chomp.to_i
+          wagon = PassengerWagon.new(total_place)
           @wagons << wagon
           @trains[train].add_wagons(wagon)
       end
@@ -171,11 +171,9 @@ class Main
         num = 1
         @trains[train].wagons_list do |wagon|
           if wagon.class == PassengerWagon
-            puts "Вагон №#{num}"
-            puts "#{wagon.free_seats} #{wagon.occupied_seat}"
+            puts "Вагон №#{num}. Занятых мест: #{@used_place}, свободных: #{wagon.free_place}"
           else
-            puts "Вагон №#{num}, занятый объем: #{wagon.occupied_capacity}"
-            puts "Свободно: #{wagon.free_volume}"
+            puts "Вагон №#{num}. Занятый объем: #{@used_place}, свободно: #{wagon.free_place}"
           end
           num += 1
         end
@@ -185,15 +183,10 @@ class Main
 
         if wagon.class == CargoWagon
           puts "Введите объем груза:"
-          capacity = gets.to_i
-          puts "Занято:"
-          puts wagon.occupied_volume(capacity)
-          puts "Свободно:" 
-          puts wagon.free_volume
+          volume = gets.to_i
+          puts "Занято: #{wagon.received_volume(volume)}, свободно: #{wagon.free_place}"
         else
-          wagon.take_seat
-          wagon.occupied_seat
-          wagon.free_seats
+          puts "Занято мест: #{wagon.take_seat}, свободно: #{wagon.free_place}"
         end
       end 
   end 
